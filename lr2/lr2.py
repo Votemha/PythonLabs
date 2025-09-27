@@ -7,7 +7,11 @@ print("Игра 'Угадай число'")
 def usersDataInputs():
 
     # Принимаем число от пользователя, которое нужно угадать
-    guessNumber = int(input("Введите число для начала игры: "))
+    guessNumberStr = input("Введите число для начала игры: ")
+    # Проверка валидности числа
+    if not (guessNumberStr.lstrip('-').isdigit() and guessNumberStr != '-'):
+        return "Значение загаданного числа не целочисленно"
+    guessNumber = int(guessNumberStr)
 
     '''
         Принимаем диапазон, в котором загадано число
@@ -17,6 +21,8 @@ def usersDataInputs():
     rangeUserMin, rangeUserMax = map(int, input("Введите два значения через пробел, в диапазон между которыми входит ваше число (первое - начало диапазона, второе - конец): ").split(" "))
     if not isinstance(rangeUserMin, int): return "Значение загаданного диапазона не целочисленно"
     if not isinstance(rangeUserMax, int): return "Значение загаданного диапазона не целочисленно"
+    if rangeUserMin >= rangeUserMax: return "Начало диапазона не может быть больше или равно концу диапазона"
+    
 
     '''
         Заполняем список рандомными числами
@@ -28,7 +34,7 @@ def usersDataInputs():
         # Генерим рандомное число в заданном диапазоне
         lst.append(random.randint(rangeUserMin, rangeUserMax))
     # Убираем повторы и сортируем список
-    lstSorted = list(set(sorted(lst)))
+    lstSorted = list(sorted(set(lst)))
     print("Список рандомных чисел в диапазоне:", lstSorted)
 
     return guessNumber, lstSorted
@@ -39,9 +45,9 @@ def usersDataInputs():
     Возвращает само число и количество попыток, за которое оно было угадано
     Например:
     Входные данные:
-    [5, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
+    5, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     Выходные данные:
-    ["Загаданное число: 5, найдено за 1 попыток"]
+    "Загаданное число: 5, найдено за 1 попыток"
 '''
 def game(guessNumber, lstSorted):
 
@@ -73,7 +79,12 @@ def game(guessNumber, lstSorted):
         # Если число не найдено
         return None
 
+userGuess = usersDataInputs()
 
-# берем данные из функции usersDataInputs и вызываем функцию game
-userFGuessNumber, userFLstSorted = usersDataInputs()
-print(game(userFGuessNumber, userFLstSorted))
+if len(userGuess) == 2:
+    # берем данные из функции usersDataInputs и вызываем функцию game
+    userFGuessNumber, userFLstSorted = userGuess
+    print(game(userFGuessNumber, userFLstSorted))
+else:
+    # Если была найдена ошибка
+    print(userGuess)
