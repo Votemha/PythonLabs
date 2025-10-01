@@ -45,6 +45,7 @@ userFun = userInputs()
 if len(userFun) == 2:
     # берем данные из функции usersDataInputs и вызываем функцию game
     userHeight, userRoot = userFun
+    # pprint - выводит красиво дерево
     pprint.pprint(genBinTree(userHeight, userRoot))
 else:
     # Если была найдена ошибка
