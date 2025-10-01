@@ -81,6 +81,7 @@ def game(guessNumber, lstSorted):
 
 userGuess = usersDataInputs()
 
+# Если ошибок не было
 if len(userGuess) == 2:
     # берем данные из функции usersDataInputs и вызываем функцию game
     userFGuessNumber, userFLstSorted = userGuess
