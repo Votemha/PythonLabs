@@ -3,7 +3,7 @@ import unittest
 
 class TestGenBinTree(unittest.TestCase):
 
-    def testGenBinTree(self):
+    def testGenBinTree(self): 
         # Тесты на успешное создание бинарного дерева
         self.assertEqual(genBinTree(2, 1), {1: 1,'left 2': {2: 2, 'left 4': None, 'right 5': None},'right 4': {4: 4, 'left 8': None, 'right 7': None}})
         self.assertEqual(genBinTree(1, 3), {3: 3, 'left 6': None, 'right 6': None})
