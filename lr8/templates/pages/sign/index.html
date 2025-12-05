@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <title>{{myapp}}</title>
+    </head>
+
+    <body>
+        <div class="container mt-5">
+            <ul id="navigation" class="list-group list-group-horizontal mb-4">
+                {% for item in navigation %}
+                    <li class="list-group-item"><a href="{{ item.href }}">{{ item.caption }}</a></li>
+                {% endfor %}
+            </ul>
+
+            <div class="row">
+                <!-- Форма регистрации -->
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>Создать новый аккаунт</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="GET" action="/sign">
+                                <div class="mb-3">
+                                    <label for="login" class="form-label">Логин:</label>
+                                    <input type="text" class="form-control" id="login" name="login" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Пароль:</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+                                <button type="submit" name="signup" value="1" class="btn btn-primary">Зарегистрироваться</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Форма авторизации -->
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>Вход в аккаунт</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="GET" action="/sign">
+                                <div class="mb-3">
+                                    <label for="login_auth" class="form-label">Логин:</label>
+                                    <input type="text" class="form-control" id="login_auth" name="login_auth" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password_auth" class="form-label">Пароль:</label>
+                                    <input type="password" class="form-control" id="password_auth" name="password_auth" required>
+                                </div>
+                                <button type="submit" name="signin" value="1" class="btn btn-success">Войти</button>
+                            </form>
+                            {% if current_user %}
+                                <div class="alert alert-success mt-3" role="alert">
+                                    <strong>Добро пожаловать, {{ current_user.login }}!</strong><br>
+                                    ID: {{ current_user.id }}<br>
+                                    Валюты: {{ current_user.currencies }}<br>
+                                    <a href="/currencies/subscriptions?user_id={{ current_user.id }}" class="btn btn-info btn-sm mt-2">Управлять подписками</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Список зарегистрированных пользователей -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5>Зарегистрированные пользователи</h5>
+                </div>
+                <div class="card-body">
+                    {% if users %}
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Логин</th>
+                                    <th>Валюты</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for id, user in users.items() %}
+                                    <tr>
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.login }}</td>
+                                        <td>{{ user.currencies }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>Нет зарегистрированных пользователей</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </body>
+</html>
