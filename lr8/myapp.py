@@ -31,7 +31,11 @@ print("d", version_app.version)
 currency_list = ['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD']
 
 data = get_currencies(currency_list)
-currencies = data  # Передаём словарь напрямую, как ожидает шаблон
+currencies = []
+for code, value in data.items():
+    c = Currency(id=None, num_code=None, char_code=code, name=None, value=value, nominal=1)
+    currencies.append(c)
+print(currencies)
 
 resultMain = template.render(myapp="CurrenciesListApp",
                          navigation=[{'caption': 'Курсы валют',
@@ -120,14 +124,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     if 'subscribe' in query_params and current_user:
                         currency = query_params.get('currency', [''])[0]
                         if currency:
-                            print(f"DEBUG: Subscribing {current_user.login} to {currency}")
+                            print(f"DEBUG: Subscribing {current_user.name} to {currency}")
                             current_user.subscribeCurrency(currency)
                     
                     # Обработка отписки
                     if 'unsubscribe' in query_params and current_user:
                         currency = query_params.get('currency_to_remove', [''])[0]
                         if currency:
-                            print(f"DEBUG: Unsubscribing {current_user.login} from {currency}")
+                            print(f"DEBUG: Unsubscribing {current_user.name} from {currency}")
                             current_user.unsubscribeCurrency(currency)
                     
                     # Получаем свежие валюты
@@ -178,19 +182,17 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 
                 if 'signup' in query_params:
                     # Регистрация - парсим параметры из URL
-                    login = query_params.get('login', [''])[0]
-                    password = query_params.get('password', [''])[0]
+                    name = query_params.get('name', [''])[0]
                     
-                    if login and password:
-                        signUp = User.userUp(login, password)
+                    if name:
+                        signUp = User.userUp(name)
                 
                 elif 'signin' in query_params:
                     # Авторизация - парсим параметры из URL
-                    login = query_params.get('login_auth', [''])[0]
-                    password = query_params.get('password_auth', [''])[0]
+                    name = query_params.get('name_auth', [''])[0]
                     
-                    if login and password:
-                        current_user = User.authenticate(login, password)
+                    if name:
+                        current_user = User.authenticate(name)
                 
                 # Строим URL с user_id
                 user_id_param = f"?user_id={current_user.id}" if current_user else ""

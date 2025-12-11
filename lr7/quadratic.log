@@ -1,0 +1,226 @@
+INFO: Logging output
+
+ERROR: Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Logging output
+
+ERROR: Logging output
+
+INFO: Logging output
+
+ERROR: Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Logging output
+
+ERROR: Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Logging output
+
+ERROR: Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Logging output
+
+ERROR: Logging output
+
+INFO: Logging output
+
+ERROR: Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Logging output
+
+ERROR: Logging output
+
+INFO: Logging output
+
+ERROR: Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Logging output
+
+ERROR: Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Logging output
+
+ERROR: Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Logging output
+
+ERROR: Logging output
+
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+ERROR: Error in get_currencies: Упали с исключением
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+ERROR: Error in get_currencies: Упали с исключением
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+ERROR: Error in get_currencies: Упали с исключением
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: get_currencies Logging output
+
+ERROR: get_currencies Logging output
+
+ERROR: Error in get_currencies: Упали с исключением
+INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Успешное завершение get_currencies с результатом: {'USD': 79.3398}
+INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://', 'handle': <_io.StringIO object at 0x1083274c0>}
+ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://', 'handle': <_io.StringIO object at 0x108327400>}
+ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Успешное завершение get_currencies с результатом: {'USD': 79.3398}
+INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://', 'handle': <_io.StringIO object at 0x108327340>}
+ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://', 'handle': <_io.StringIO object at 0x108327640>}
+ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: INFO: Успешное завершение get_currencies с результатом: {'USD': 79.3398}
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://', 'handle': <_io.StringIO object at 0x10a69f340>}
+ERROR: ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://invalid'}
+DEBUG: Starting new HTTPS connection (1): invalid:443
+ERROR: ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: INFO: Успешное завершение get_currencies с результатом: {'USD': 79.3398}
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://', 'handle': <_io.StringIO object at 0x105fc7340>}
+ERROR: ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+DEBUG: Starting new HTTPS connection (1): www.cbr-xml-daily.ru:443
+DEBUG: https://www.cbr-xml-daily.ru:443 "GET /daily_json.js HTTP/1.1" 200 2303
+INFO: INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+
+INFO: INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://invalid'}
+DEBUG: Starting new HTTPS connection (1): invalid:443
+ERROR: ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+
