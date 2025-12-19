@@ -1,10 +1,10 @@
 class UserCurrency:
-    """Модель связывания пользователя и валюты (many-to-many)
+    """Модель связывания пользователя и валюты
 
     Поля:
-    - id: уникальный идентификатор записи
+    - id: уникальный идентификатор
     - user_id: id пользователя (внешний ключ к User)
-    - currency_id: идентификатор валюты (в данном проекте используется char_code, например 'USD')
+    - currency_id: идентификатор валюты
 
     Хранится в памяти в виде словаря __data: id -> запись
     """
@@ -24,8 +24,7 @@ class UserCurrency:
 
     @classmethod
     def create_link(cls, user_id: int, currency_id):
-        """Создать связь user - currency. Не дублирует существующую связь."""
-        # не создаём дубликаты
+        """Создать связь user - currency"""
         for rec in cls.__data.values():
             if rec.user_id == user_id and rec.currency_id == currency_id:
                 return rec
@@ -38,7 +37,7 @@ class UserCurrency:
 
     @classmethod
     def remove_link(cls, user_id: int, currency_id) -> bool:
-        """Удаляет связь; возвращает True если удалено."""
+        """Удаляет связь"""
         for rid, rec in list(cls.__data.items()):
             if rec.user_id == user_id and rec.currency_id == currency_id:
                 del cls.__data[rid]

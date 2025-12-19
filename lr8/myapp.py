@@ -19,15 +19,12 @@ env = Environment(
 template = env.get_template("index.html")
 curren = env.get_template("./pages/bank/index.html")
 sign_template = env.get_template("./pages/sign/index.html")
-subscriptions_template = env.get_template("./pages/currencies/subscriptions.html")
+subscriptions_template = env.get_template("./pages/currencies/index.html")
 
 main_author = Author('Aхметов Артём', 'P3122')
 version_app = App('CurrenciesListApp', '1.0', main_author)
 print("d", version_app.version)
 
-# Получить курсы валют
-# currencies = get_currencies(['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD'])
-# print(currencies)
 currency_list = ['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD']
 
 data = get_currencies(currency_list)
@@ -36,38 +33,6 @@ for code, value in data.items():
     c = Currency(id=None, num_code=None, char_code=code, name=None, value=value, nominal=1)
     currencies.append(c)
 print(currencies)
-
-resultMain = template.render(myapp="CurrenciesListApp",
-                         navigation=[{'caption': 'Курсы валют',
-                                      'href': "/currencies"},
-                                      {'caption': 'Регистрация',
-                                      'href': "/sign"}],
-                         author_name=main_author.name,
-                         group=main_author.group,
-                         a_variable=currencies,
-                         current_user=None,
-                         version=version_app.version
-                         )
-resultCurrencies = curren.render(myapp="CurrenciesListApp",
-                         navigation=[{'caption': 'Основная страница',
-                                      'href': "/"},
-                                      {'caption': 'Регистрация',
-                                      'href': "/sign"}],
-                         author_name=main_author.name,
-                         group=main_author.group,
-                         a_variable=currencies,
-                         current_user=None,
-                         version=version_app.version
-                         )
-resultSign = sign_template.render(myapp="CurrenciesListApp",
-                         navigation=[{'caption': 'Основная страница',
-                                      'href': "/"},
-                                      {'caption': 'Курсы валют',
-                                      'href': "/currencies"}],
-                         users=User.dataUsers(),
-                         current_user=None,
-                         version=version_app.version
-                        )
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
@@ -93,11 +58,12 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         try:
             if path == '' or path == 'index.html':
                 current_user = get_current_user()
+                user_id_param = f"?user_id={current_user.id}" if current_user else ""
                 result = template.render(myapp="CurrenciesListApp",
                                      navigation=[{'caption': 'Курсы валют',
-                                                  'href': "/currencies"},
+                                                  'href': f"/currencies{user_id_param}"},
                                                   {'caption': 'Регистрация',
-                                                  'href': "/sign"}],
+                                                  'href': f"/sign{user_id_param}"}],
                                      author_name=version_app.author.name,
                                      group=version_app.author.group,
                                      a_variable=currencies,
@@ -145,7 +111,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                         navigation=[
                             {'caption': 'Основная страница', 'href': f"/{user_id_param}"},
                             {'caption': 'Курсы валют', 'href': f"/currencies{user_id_param}"},
-                            {'caption': 'Регистрация', 'href': "/sign"}
+                            {'caption': 'Регистрация', 'href': f"/sign{user_id_param}"}
                         ],
                         current_user=current_user,
                         available_currencies=all_currencies
@@ -165,7 +131,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                                      navigation=[{'caption': 'Основная страница',
                                                   'href': f"/{user_id_param}"},
                                                   {'caption': 'Регистрация',
-                                                  'href': "/sign"}],
+                                                  'href': f"/sign{user_id_param}"}],
                                      author_name=main_author.name,
                                      group=main_author.group,
                                      a_variable=currencies,
@@ -178,18 +144,19 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.wfile.write(bytes(result, "utf-8"))
             
             elif path == 'sign':
-                current_user = None
+                current_user = get_current_user()  # Проверяем, есть ли уже авторизованный пользователь
                 
                 if 'signup' in query_params:
                     # Регистрация - парсим параметры из URL
-                    name = query_params.get('name', [''])[0]
+                    name = query_params.get('login', [''])[0]
                     
                     if name:
                         signUp = User.userUp(name)
+                        current_user = signUp  # Автоматически авторизуем после регистрации
                 
                 elif 'signin' in query_params:
                     # Авторизация - парсим параметры из URL
-                    name = query_params.get('name_auth', [''])[0]
+                    name = query_params.get('login_auth', [''])[0]
                     
                     if name:
                         current_user = User.authenticate(name)

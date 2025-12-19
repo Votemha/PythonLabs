@@ -1,0 +1,27 @@
+INFO: Старт вызова get_currencies с аргументами: args=(['USD', 'EUR', 'GBP', 'NNZ'],), kwargs={'url': 'https://www.cbr-xml-daily.ru/daily_json.js'}
+INFO: Успешное завершение get_currencies с результатом: {'USD': 80.722, 'EUR': 94.512, 'GBP': 108.1271, 'NNZ': "Код валюты 'NNZ' не найден."}
+
+INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={}
+INFO: Успешное завершение get_currencies с результатом: {'USD': 80.722}
+
+INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://', 'handle': <_io.StringIO object at 0x107b3b580>}
+ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+
+INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+
+INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+
+INFO: Старт вызова get_currencies с аргументами: args=(['XYZ'],), kwargs={}
+INFO: Успешное завершение get_currencies с результатом: {'XYZ': "Код валюты 'XYZ' не найден."}
+
+INFO: Старт вызова get_currencies с аргументами: args=(['USD'],), kwargs={'url': 'https://invalid'}
+ERROR: Ошибка в get_currencies: RequestException: Упали с исключением
+
+INFO: Старт вызова get_currencies с аргументами: args=(['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD'],), kwargs={}
+INFO: Успешное завершение get_currencies с результатом: {'USD': 80.722, 'EUR': 94.512, 'GBP': 108.1271, 'JPY': 51.8346, 'CHF': 101.5371, 'CAD': 58.6046, 'AUD': 53.3492}
+
+INFO: Старт вызова get_currencies с аргументами: args=(['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD'],), kwargs={}
+INFO: Успешное завершение get_currencies с результатом: {'USD': 80.722, 'EUR': 94.512, 'GBP': 108.1271, 'JPY': 51.8346, 'CHF': 101.5371, 'CAD': 58.6046, 'AUD': 53.3492}
+

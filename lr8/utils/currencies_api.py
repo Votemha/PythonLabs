@@ -1,46 +1,93 @@
 import sys
-import functools
 import io
+import functools
 
 def trace(func=None, *, handle=sys.stdout):
-      print(f"decorated func: {func}, {handle}")
-      if func is None:
-          print('func is None')
-          return lambda func: trace(func, handle=handle)
-      else:
-          print(f'{func.__name__}, {handle}')
+    """
+    Декоратор для трассировки функций
+    Args:
+        func: Функция для трассировки
+        handle: Поток для записи трассировки (по умолчанию sys.stdout)
+    Returns:
+        Обернутая функция с трассировкой
+    """
+    if func is None:
+        return lambda func: trace(func, handle=handle)
 
-      @functools.wraps(func)
-      def inner(*args, **kwargs):
-          handle.write(f"Using handling output\n")
-          # print(func.__name__, args, kwargs)
-          return func(*args, **kwargs)
+    @functools.wraps(func)
+    def inner(*args, **kwargs):
+        handle.write(f"Using handling output\n")
+        return func(*args, **kwargs)
 
-      # print('return inner')
-      return inner
+    return inner
 
-nonstandardstream = io.StringIO()
+# Пример использования функции
+if __name__ == '__main__':
+    nonstandardstream = io.StringIO()
+    @trace(handle=nonstandardstream)
+    def increm(x):
+        """Инкремент"""
+        # print("Инкремент")
+        return x+1
 
-@trace(handle=nonstandardstream)
-def increm(x):
-    """Инкремент"""
-    # print("Инкремент")
-    return x+1
-@trace(handle=nonstandardstream)
-def increm(x):
-    """Инкремент"""
-    # print("Инкремент")
-    return x+1
+    increm(2)
 
-increm(2)
+    nonstandardstream.getvalue()
 
-nonstandardstream.getvalue()
+# Логирование
+import logging
 
-import functools
+log = logging.getLogger("currency")
+log.setLevel(logging.INFO)
+handler = logging.StreamHandler()
+handler.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
+log.addHandler(handler)
+log.addHandler(logging.FileHandler("./lr8/currency.log"))
+
+def logger(func=None, *, handle=sys.stdout):
+    """
+    Декоратор для логирования функций
+    Args:
+        func: Функция для логирования
+        handle: Поток для записи логов (по умолчанию sys.stdout)
+    Returns:
+        Обернутая функция с логированием
+    """
+    if func is None:
+        return lambda func: logger(func, handle=handle)
+
+    @functools.wraps(func)
+    def inner(*args, **kwargs):
+        # Логирование старта вызова
+        infoMsg = f"Старт вызова {func.__name__} с аргументами: args={args}, kwargs={kwargs}"
+        if isinstance(handle, logging.Logger):
+            handle.info(f"INFO: {infoMsg}")
+        else:
+            handle.write(f"INFO: {infoMsg}")
+        
+        try:
+            result = func(*args, **kwargs)
+            # Логирование успешного завершения
+            success_msg = f"Успешное завершение {func.__name__} с результатом: {result}\n"
+            if isinstance(handle, logging.Logger):
+                handle.info(f"INFO: {success_msg}")
+            else:
+                handle.write(f"INFO: {success_msg}")
+            return result
+        except Exception as e:
+            # Логирование ошибки
+            errorMsg = f"Ошибка в {func.__name__}: {type(e).__name__}: {e}\n"
+            if isinstance(handle, logging.Logger):
+                handle.error(f"ERROR: {errorMsg}")
+            else:
+                handle.write(f"ERROR: {errorMsg}")
+            raise
+
+    return inner
+
 import requests
-import sys
-import io
 
+@logger(handle=log)
 def get_currencies(currency_codes: list, url:str = "https://www.cbr-xml-daily.ru/daily_json.js", handle=sys.stdout)->dict:
     """
     Получает курсы валют с API Центробанка России.
@@ -71,133 +118,16 @@ def get_currencies(currency_codes: list, url:str = "https://www.cbr-xml-daily.ru
         return currencies
 
     except requests.exceptions.RequestException as e:
-        # print(f"Ошибка при запросе к API: {e}", file=handle)
-        handle.write(f"Ошибка при запросе к API: {e}")
-        # raise ValueError('Упали с исключением')
+        if isinstance(handle, logging.Logger):
+            log.error(f"Ошибка при запросе к API: {e}")
+        else:
+            handle.write(f"Ошибка при запросе к API: {e}")
         raise requests.exceptions.RequestException('Упали с исключением')
 
 # Пример использования функции:
-currency_list = ['USD', 'EUR', 'GBP', 'NNZ']
+if __name__ == '__main__':
+    currency_list = ['USD', 'EUR', 'GBP', 'NNZ']
 
-try:
     currency_data = get_currencies(currency_list, url='https://www.cbr-xml-daily.ru/daily_json.js')
     if currency_data:
          print(currency_data)
-except:
-    pass
-
-import unittest
-from requests import exceptions
-
-MAX_R_VALUE = 1000
-
-
-# Тесты
-class TestGetCurrencies(unittest.TestCase):
-
-  def test_currency_usd(self):
-    """
-      Проверяет наличие ключа в словаре и значения этого ключа
-    """
-    currency_list = ['USD']
-    currency_data = get_currencies(currency_list)
-
-    self.assertIn(currency_list[0], currency_data)
-    self.assertIsInstance(currency_data['USD'], float)
-    self.assertGreaterEqual(currency_data['USD'], 0)
-    self.assertLessEqual(currency_data['USD'], MAX_R_VALUE)
-
-  def test_nonexist_code(self):
-    self.assertIn("Код валюты", get_currencies(['XYZ'])['XYZ'])
-    self.assertIn("XYZ", get_currencies(['XYZ'])['XYZ'])
-    self.assertIn("не найден", get_currencies(['XYZ'])['XYZ'])
-
-  def test_get_currency_error(self):
-    error_phrase_regex = "Ошибка при запросе к API"
-    currency_list = ['USD']
-
-    with self.assertRaises(requests.exceptions.RequestException):
-      currency_data = get_currencies(currency_list, url="https://")
-
-  def test_error_message_in_stream(self):
-    error_phrase_regex = "Ошибка при запросе к API"
-    stream = io.StringIO()
-    currency_list = ['USD']
-
-    try:
-      get_currencies(currency_list, url="https://", handle=stream)
-    except requests.exceptions.RequestException:
-      pass
-
-    stream_content = stream.getvalue()
-    self.assertRegex(stream_content, error_phrase_regex)
-
-
-
-
-
-# Запуск тестов
-if __name__ == '__main__':
-    unittest.main(argv=[''], verbosity=2, exit=False)
-
-import sys
-
-def trace(func=None, *, handle=sys.stdout):
-    # print(f"decorated func: {func}, {handle}")
-    if func is None:
-        # print('func is None')
-        return lambda func: trace(func, handle=handle)
-    # else:
-    #   print(f'{func.__name__}, {handle}')
-
-    @functools.wraps(func)
-    def inner(*args, **kwargs):
-        handle.write(f"Using handling output\n")
-        # print(func.__name__, args, kwargs)
-        return func(*args, **kwargs)
-
-    # print('return inner')
-    return inner
-
-import io
-f = io.StringIO()
-
-f.write("Hello from teacher!\n")
-f.write('This is second line')
-
-# f.seek(0)
-# print(f.read())
-
-# f.seek(0)
-# print(f.read())
-
-f.getvalue()
-
-import unittest
-import io
-
-
-# Тесты
-class TestStreamWrite(unittest.TestCase):
-
-
-  def setUp(self):
-    self.nonstandardstream = io.StringIO()
-
-
-    try:
-      self.get_currencies = get_currencies(['USD'],
-                                         url="https://www.cbr-xml-daily.ru/daily_json.js",
-                                         handle=self.nonstandardstream)
-    except:
-      pass
-    # self.trace = trace(get_currencies, handle=self.nonstandardstream)
-
-
-  def test_writing_stream(self):
-    stream_content = self.nonstandardstream.getvalue()
-    self.assertIn("Ошибка при запросе к API", stream_content)
-
-
-  def tearDown(self):
-    del self.nonstandardstream

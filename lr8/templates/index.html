@@ -19,7 +19,7 @@
       <!-- Информация о пользователе -->
       {% if current_user %}
           <div class="alert alert-info" role="alert">
-              <strong>Вы авторизованы как: {{ current_user.login }}</strong> (ID: {{ current_user.id }})
+              <strong>Вы авторизованы как: {{ current_user.name }}</strong> (ID: {{ current_user.id }})
               <a href="/currencies/subscriptions?user_id={{ current_user.id }}" class="btn btn-sm btn-primary ms-2">Управлять подписками</a>
           </div>
       {% endif %}
@@ -29,7 +29,9 @@
       <div class="card">
           <div class="card-body">
               <h5 class="card-title">Текущие курсы валют:</h5>
-              <pre class="card-text">{{ a_variable }}</pre>
+              {% for item in a_variable %}
+              <pre class="card-text">{{ item.char_code }}: {{ item.value }}</pre>
+              {% endfor %}
           </div>
       </div>
 

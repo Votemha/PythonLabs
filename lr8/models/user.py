@@ -39,10 +39,7 @@ class User():
         """Добавить валюту в список пользователя"""
         # Поддерживаем разные форматы входных данных: строка (код), объект Currency или dict
         currency_id = None
-        try:
-            from .user_currency import UserCurrency
-        except Exception:
-            from models.user_currency import UserCurrency
+        from .user_currency import UserCurrency
 
         if isinstance(currency_data, str):
             currency_id = currency_data
@@ -56,7 +53,7 @@ class User():
         if currency_id is None:
             return False
 
-        # Создаём связь в таблице many-to-many
+        # Создаём связь в таблице
         UserCurrency.create_link(self.__id, currency_id)
 
         if currency_id not in self.__currencies:
@@ -65,10 +62,7 @@ class User():
     
     def subscribeCurrency(self, currency_code: str):
         """Подписаться на валюту по коду (USD, EUR и т.д.)"""
-        try:
-            from .user_currency import UserCurrency
-        except Exception:
-            from models.user_currency import UserCurrency
+        from .user_currency import UserCurrency
 
         if currency_code not in self.__currencies:
             UserCurrency.create_link(self.__id, currency_code)

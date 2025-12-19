@@ -58,7 +58,7 @@
                             </form>
                             {% if current_user %}
                                 <div class="alert alert-success mt-3" role="alert">
-                                    <strong>Добро пожаловать, {{ current_user.login }}!</strong><br>
+                                    <strong>Добро пожаловать, {{ current_user.name }}!</strong><br>
                                     ID: {{ current_user.id }}<br>
                                     Валюты: {{ current_user.currencies }}<br>
                                     <a href="/currencies/subscriptions?user_id={{ current_user.id }}" class="btn btn-info btn-sm mt-2">Управлять подписками</a>
@@ -88,7 +88,7 @@
                                 {% for id, user in users.items() %}
                                     <tr>
                                         <td>{{ user.id }}</td>
-                                        <td>{{ user.login }}</td>
+                                        <td>{{ user.name }}</td>
                                         <td>{{ user.currencies }}</td>
                                     </tr>
                                 {% endfor %}
