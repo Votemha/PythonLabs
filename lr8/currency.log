@@ -25,3 +25,12 @@ INFO: Успешное завершение get_currencies с результат
 INFO: Старт вызова get_currencies с аргументами: args=(['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD'],), kwargs={}
 INFO: Успешное завершение get_currencies с результатом: {'USD': 80.722, 'EUR': 94.512, 'GBP': 108.1271, 'JPY': 51.8346, 'CHF': 101.5371, 'CAD': 58.6046, 'AUD': 53.3492}
 
+INFO: Старт вызова get_currencies с аргументами: args=(['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD'],), kwargs={}
+INFO: Успешное завершение get_currencies с результатом: {'USD': 80.722, 'EUR': 94.512, 'GBP': 108.1271, 'JPY': 51.8346, 'CHF': 101.5371, 'CAD': 58.6046, 'AUD': 53.3492}
+
+INFO: Старт вызова get_currencies с аргументами: args=(['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD'],), kwargs={}
+INFO: Успешное завершение get_currencies с результатом: {'USD': 80.722, 'EUR': 94.512, 'GBP': 108.1271, 'JPY': 51.8346, 'CHF': 101.5371, 'CAD': 58.6046, 'AUD': 53.3492}
+
+INFO: Старт вызова get_currencies с аргументами: args=(['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD'],), kwargs={}
+INFO: Успешное завершение get_currencies с результатом: {'USD': 80.722, 'EUR': 94.512, 'GBP': 108.1271, 'JPY': 51.8346, 'CHF': 101.5371, 'CAD': 58.6046, 'AUD': 53.3492}
+

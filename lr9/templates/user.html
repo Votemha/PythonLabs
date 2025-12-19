@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрации</title>
+</head>
+<body>
+    {% if login is not none %}
+    Ваш логин: {{login}}
+    {% endif %}
+    {% if login is none %}
+    Вы не зарегестрированы
+    {% endif %}
+    <ul id="navigation">
+    {% for item in navigation %}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>
+    <div>
+        <h3>Зарегистрироваться</h3>
+        <form action="/user/add" method="GET">
+            <input type="text" name="loginAdd">
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+    {% if errorAdd %}
+    <div style="color: red;">{{ errorAdd }}</div>
+    {% endif %}
+    {% if successAdd %}
+    <div style="color: green;">{{ successAdd }}</div>
+    {% endif %}
+    <div>
+        <h3>Войти</h3>
+        <form action="/user/in" method="GET">
+            <input type="text" name="loginIn">
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+    {% if errorIn %}
+    <div style="color: red;">{{ errorIn }}</div>
+    {% endif %}
+    {% if successIn %}
+    <div style="color: green;">Успешный вход по логину: {{ successIn }}</div>
+    {% endif %}
+    <div>
+        <h3>Добавить валюту к пользователю</h3>
+        <form action="/user/add_currency" method="GET">
+            <select name="user_id">
+                {% for user in user_list %}
+                <option value="{{ user.id }}">{{ user.login }}</option>
+                {% endfor %}
+            </select>
+            <select name="currency_id">
+                <option value="1">USD</option>
+                <option value="2">EUR</option>
+                <!-- Add more currencies as needed -->
+            </select>
+            <button type="submit">Добавить валюту</button>
+        </form>
+    </div>
+    <div>
+        {{user_list}}
+    </div>
+</body>
+</html>

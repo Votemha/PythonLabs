@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валюты</title>
+</head>
+<body>
+    {% if login is not none %}
+    Ваш логин: {{login}}
+    {% endif %}
+    {% if login is none %}
+    Вы не зарегестрированы
+    {% endif %}
+    <ul id="navigation">
+    {% for item in navigation %}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>
+    <h2>Валюты</h2>
+    <table id="currencies" class="table table-striped">
+    <tr>
+    <th>ID</th><th>NumCode</th><th>CharCode</th><th>Name</th><th>Value</th><th>Nominal</th><th>Действия</th><th>Изменить Value</th>
+    </tr>
+    {% for item in currencies %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.num_code }}</td>
+        <td>{{ item.char_code }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.value }}</td>
+        <td>{{ item.nominal }}</td>
+        <form action=""><td><a href="/currency/delete?id={{item.id}}" type="submit">Удалить</a></td></form>
+        <form action="/currency/update" method="GET"><td><input type="text" name="{{ item.char_code }}"><button type="submit">Изменить</button></td></form>
+    </tr>
+    {% endfor %}
+    </table>
+    <form action="/"></form>
+</body>
+</html>

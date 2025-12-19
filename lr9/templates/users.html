@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if login is not none %}
+    Ваш логин: {{login}}
+    {% endif %}
+    {% if login is none %}
+    Вы не зарегестрированы
+    {% endif %}
+    <ul id="navigation">
+    {% for item in navigation %}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>
+    {% for i in user_list %}
+    <p>id: {{i.id}}, login: {{i.login}}, Валюты: {% if i.currencies %}{{i.currencies}}{% endif %}{% if i.currencies == "" %}-{% endif %}</p>
+    {% endfor %}
+</body>
+</html>
